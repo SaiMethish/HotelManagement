@@ -9,4 +9,7 @@ export class Hotel{
         this.address=address;
         this.rooms=50;
     }
+    toString():string{
+        return `hotel id: ${this.hotel_id} hotel name: ${this.name} total rooms: ${this.rooms} hotel address:${this.address}`;
+    }
 }
