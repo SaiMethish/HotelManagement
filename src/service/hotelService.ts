@@ -1,13 +1,13 @@
 import {hotelsList} from '../index'
 import { Hotel } from '../model/Hotel';
 
-const getHotelsDetails=()=>{
+export const getHotelsDetails=()=>{
     for(let i of hotelsList){
         console.log(i.toString());
     }
 }
 
-const gethotel=(id:number):Hotel=>{
+export const gethotel=(id:number):Hotel=>{
     for(let i of hotelsList){
         if(i.hotel_id==id){
             return i;
@@ -16,11 +16,11 @@ const gethotel=(id:number):Hotel=>{
     return new Hotel(-1,"","");
 }
 
-const addhotel=(hotel:Hotel)=>{
+export const addhotel=(hotel:Hotel)=>{
     hotelsList.push(hotel);
 }
 
-const deletehotel=(id:number)=>{
+export const deletehotel=(id:number)=>{
     let rm_id:number=-1;
     for(let i of hotelsList){
         if(id==i.hotel_id){
@@ -30,7 +30,7 @@ const deletehotel=(id:number)=>{
     id==-1?console.log("hotel not found"):hotelsList.splice(id,1);
 }
 
-const updatehotel=(id:number,hotel:Hotel)=>{
+export const updatehotel=(id:number,hotel:Hotel)=>{
     let tmp:Hotel=new Hotel(-1,"","");
     for(let i of hotelsList){
         if(i.hotel_id==id) tmp=i;

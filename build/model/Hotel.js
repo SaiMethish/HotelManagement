@@ -6,7 +6,7 @@ class Hotel {
         this.hotel_id = h_id;
         this.name = name;
         this.address = address;
-        this.rooms = 50;
+        this.rooms = 20;
     }
     toString() {
         return `hotel id: ${this.hotel_id} hotel name: ${this.name} total rooms: ${this.rooms} hotel address:${this.address}`;

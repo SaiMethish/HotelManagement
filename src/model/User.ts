@@ -1,8 +1,8 @@
 export class User{
-    user_id:number;
-    user_name:string;
-    email:string;
-    ph_no:string;
+    public user_id:number;
+    public user_name:string;
+    public email:string;
+    public ph_no:string;
     constructor(u_id:number,u_name:string,email:string,ph_no:string){
         this.user_id=u_id;
         this.user_name=u_name;
