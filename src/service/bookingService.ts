@@ -2,7 +2,9 @@ import { bookingsList, hotelsList } from "..";
 import { Booking } from "../model/Booking";
 import { Hotel } from "../model/Hotel";
 import { User } from "../model/User";
+import PromptSync from "prompt-sync";
 import{gethotel} from "../service/hotelService"
+const prompt=PromptSync();
 export const bookHotel=(user:User)=>{
     const hotelname=prompt("enter the hotel name");
     const hotel=hotelsList.find(i=>i.name==hotelname);
