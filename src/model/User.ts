@@ -9,4 +9,8 @@ export class User{
         this.email=email;
         this.ph_no=ph_no;
     }
+    toString():string{
+        return `user_id: ${this.user_id} user_name: ${this.user_name} email: ${this.email}
+        ph_no: ${this.ph_no}`;
+    }
 }
