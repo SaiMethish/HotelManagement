@@ -13,6 +13,6 @@ const getUser = () => {
     const email = prompt("enter email");
     const ph_no = prompt("enter ph_no");
     const user = new User_1.User(userid, name, email, ph_no);
-    console.log(user.toString());
+    return user;
 };
 exports.getUser = getUser;
