@@ -1,9 +1,9 @@
 import {hotelsList} from '../index'
 import { Hotel } from '../model/Hotel';
-
+import { logger } from '../Logger/logger';
 export const getHotelsDetails=()=>{
     for(let i of hotelsList){
-        console.log(i.toString());
+        logger.info(i.toString());
     }
 }
 
@@ -27,7 +27,7 @@ export const deletehotel=(id:number)=>{
             rm_id=id;
         }
     }
-    id==-1?console.log("hotel not found"):hotelsList.splice(id,1);
+    id==-1?logger.info("hotel not found"):hotelsList.splice(id,1);
 }
 
 export const updatehotel=(id:number,hotel:Hotel)=>{
@@ -36,10 +36,11 @@ export const updatehotel=(id:number,hotel:Hotel)=>{
         if(i.hotel_id==id) tmp=i;
     }
     if(tmp.hotel_id==-1){
-        console.log("hotel not found");
+        logger.info("hotel not found");
         return;
     }
     if(hotel.address!="") tmp.address=hotel.address;
     if(hotel.name!="") tmp.name=hotel.name;
     if(hotel.address!="") tmp.address=hotel.address;
+    logger.info("hotel ")
 }

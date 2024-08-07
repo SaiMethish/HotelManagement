@@ -4,18 +4,19 @@ import { Hotel } from "../model/Hotel";
 import { User } from "../model/User";
 import PromptSync from "prompt-sync";
 import{gethotel} from "../service/hotelService"
+import { logger } from "../Logger/logger";
 const prompt=PromptSync();
 export const bookHotel=(user:User)=>{
     const hotelname=prompt("enter the hotel name");
     const hotel=hotelsList.find(i=>i.name==hotelname);
     if(!hotel) {
-        console.log("hotel not found");
+        logger.error("hotel not found");
         return;
     }
     let checkin_date=prompt("enter the checkin date");
     let checkout_date=prompt("enter the checkout date");
     if(checkin_date!=undefined && checkout_date!=undefined)addBooking(user,hotel,checkin_date,checkout_date);
-    else console.log("checkin/checkout date not valid");
+    else logger.error("checkin/checkout date not valid");
 }
 
 export const addBooking=(user:User,hotel:Hotel,checkin_date:string,checkout_date:string)=>{
@@ -27,7 +28,7 @@ export const addBooking=(user:User,hotel:Hotel,checkin_date:string,checkout_date
         booking_id=bookingsList.length+1;
     }
     if(hotel.rooms<=0){
-        console.log("rooms not avalilabe select another hotel");
+        logger.error("rooms not avalilabe select another hotel");
         return;
     }
     for(let i of hotelsList){
@@ -35,6 +36,7 @@ export const addBooking=(user:User,hotel:Hotel,checkin_date:string,checkout_date
     }
     const booking=new Booking(booking_id,user.user_id,hotel.hotel_id,checkin_date,checkout_date,new Date());
     bookingsList.push(booking);
+    logger.info("booking completed");
 }
 export const deleteBooking=(id:number)=>{
     let idx:number=-1;
@@ -42,6 +44,7 @@ export const deleteBooking=(id:number)=>{
         if(bookingsList[i].booking_id==id) idx=i;
     }
     bookingsList.splice(idx,1);
+    idx==-1?logger.error("booking not found"):logger.info("booking deleted");
 }
 
 export const getBooking=(id:number)=>{
@@ -49,5 +52,6 @@ export const getBooking=(id:number)=>{
     for(let i of bookingsList){
         if(i.booking_id==id) return i;
     }
+    logger.error("booking not found")
     return new Booking(-1,-1,-1,"","",new Date());
 }
